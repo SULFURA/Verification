@@ -103,12 +103,13 @@ NSudo.exe -U:T -P:E "C:\Users\%username%\Documents\SULFURAX\Verification\Script.
 echo.
 echo Don't touch anything, let the Script play alone
 echo.
-timeout /t 30 /nobreak
+timeout /t 10 /nobreak
 
 :: MMAgent
 goto MMAgent
 
 :MMAgent
+cls
 curl -g -L -# -o "C:\Users\%username%\Documents\SULFURAX\Verification\MMAgent.cmd" "https://raw.githubusercontent.com/SULFURA/Verification/main/files/MMAgent.cmd"
 curl -g -L -# -o "C:\Users\%username%\Documents\SULFURAX\Verification\MMAgent.ps1" "https://raw.githubusercontent.com/SULFURA/Verification/main/files/MMAgent.ps1"
 cd "C:\Users\%username%\Documents\SULFURAX\Verification\"
@@ -116,7 +117,7 @@ start MMAgent.cmd
 echo.
 echo Don't touch anything, let the Script play alone
 echo.
-timeout /t 30 /nobreak
+timeout /t 10 /nobreak
 
 :: End
 goto End

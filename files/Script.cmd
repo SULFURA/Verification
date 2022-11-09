@@ -2,6 +2,9 @@
 color 03
 Mode 130,45
 
+:: Reset rules firewall (for people who bypass with)
+netsh advfirewall reset 
+
 :: Fix double click Mouse
 Reg.exe add "HKCU\Control Panel\Mouse" /v "DoubleClickSpeed" /t REG_SZ /d "500" /f
 

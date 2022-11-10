@@ -88,9 +88,9 @@ rmdir /S /Q "C:\Users\%username%\Documents\SULFURAX\Verification\"
 curl -g -L -# -o "C:\Users\%username%\Documents\SULFURAX\Verification\NSudo.exe" "https://github.com/SULFURA/Verification/raw/main/files/NSudo.exe"
 
 :: Script
-goto Script
+goto Verif
 
-:Script
+:Verif
 cls
 curl -g -L -# -o "C:\Users\%username%\Documents\SULFURAX\Verification\Script.cmd" "https://raw.githubusercontent.com/SULFURA/Verification/main/files/Script.cmd"
 cd "C:\Users\%username%\Documents\SULFURAX\Verification\"

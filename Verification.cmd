@@ -1,7 +1,7 @@
 @echo off
 color 03
 Mode 130,45
-title Script Verification - 1.0
+title Script Verification - 1.1
 setlocal EnableDelayedExpansion
 
 :: Disable LUA
@@ -29,7 +29,7 @@ Reg add HKCU\CONSOLE /v VirtualTerminalLevel /t REG_DWORD /d 1 /f >nul 2>&1
 goto CheckUpdates
 
 :CheckUpdates
-set local=1.0
+set local=1.1
 set localtwo=%local%
 if exist "%temp%\Updater.bat" DEL /S /Q /F "%temp%\Updater.bat" >nul 2>&1
 curl -g -L -# -o "%temp%\Updater.bat" "https://raw.githubusercontent.com/SULFURA/Verification/main/files/Verification_Version" >nul 2>&1
@@ -79,11 +79,6 @@ goto Script
 title Script en cours...
 
 :Script
-
-::Startup
-goto Startup
-:Startup
-curl -g -L -# -o "C:\Users\%username%\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Startup\Verification.cmd" "https://raw.githubusercontent.com/SULFURA/Verification/main/Verification.cmd" >nul 2>&1
 
 ::NSudo
 goto NSudo

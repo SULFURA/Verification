@@ -29,7 +29,7 @@
 
 ## How To Use
 
-To use this script, download it <a href="https://github.com/SULFURA/Verification/releases/latest" target="_blank">HERE</a> and and launch it as an Administrator.
+To use this script, download it <a href="https://github.com/SULFURA/Verification/releases/latest" target="_blank">HERE</a> and launch it as an Administrator.
 
 This is totally normal if your firewall asks you again to re-authorize each of the applications, take this as a security for you, if you have malware, you will see it.
 You need to launch it only once, not require it to be exactly before a check, you can do it there, now right away at least everything will be in order right now.

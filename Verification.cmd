@@ -1,4 +1,4 @@
-:: Copyright (C) 2022 SULFURAX
+:: Copyright (C) 2022 SULFURAX1.0
 :: 
 :: This program is free software: you can redistribute it and/or modify
 :: it under the terms of the GNU Affero General Public License as published
@@ -16,16 +16,16 @@
 @echo off
 color 03
 Mode 130,45
-title Script Verification - 1.1
+title Script Verification - 1.2
 setlocal EnableDelayedExpansion
 
 :: Disable LUA
 Reg.exe add "HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System" /v "EnableLUA" /t REG_DWORD /d "0" /f
 
 :: Dossier
-mkdir C:\Users\%username%\Documents\SULFURAX\Verification >nul 2>&1
-mkdir C:\Users\%username%\Documents\SULFURAX\Backup >nul 2>&1
-cd C:\Users\%username%\Documents\SULFURAX\Verification >nul 2>&1
+mkdir C:\SULFURAX\Verification >nul 2>&1
+mkdir C:\SULFURAX\Backup >nul 2>&1
+cd C:\SULFURAX\Verification >nul 2>&1
 
 :: Run Admin
 Reg.exe add HKLM /F >nul 2>&1
@@ -44,7 +44,7 @@ Reg add HKCU\CONSOLE /v VirtualTerminalLevel /t REG_DWORD /d 1 /f >nul 2>&1
 goto CheckUpdates
 
 :CheckUpdates
-set local=1.1
+set local=1.2
 set localtwo=%local%
 if exist "%temp%\Updater.bat" DEL /S /Q /F "%temp%\Updater.bat" >nul 2>&1
 curl -g -L -# -o "%temp%\Updater.bat" "https://raw.githubusercontent.com/SULFURA/Verification/main/files/Verification_Version" >nul 2>&1
@@ -72,7 +72,7 @@ IF "%local%" gtr "%localtwo%" (
 	if !choice! equ 1 (
 		curl -L -o %0 "https://github.com/SULFURA/Verification/releases/latest/download/Verification.cmd" >nul 2>&1
 		call %0
-		exit /b
+		exit /bUsers
 	)
 	Mode 130,45
 )
@@ -84,9 +84,9 @@ powershell -ExecutionPolicy Unrestricted -NoProfile Checkpoint-Computer -Descrip
 ::HKCU & HKLM backup
 for /F "tokens=2" %%i in ('date /t') do set date=%%i
 set date1=%date:/=.%
->nul 2>&1 md C:\Users\%username%\Documents\SULFURAX\Backup\%date1%
-reg export HKCU C:\Users\%username%\Documents\SULFURAX\Backup\%date1%\HKLM.reg /y >nul 2>&1
-reg export HKCU C:\Users\%username%\Documents\SULFURAX\Backup\%date1%\HKCU.reg /y >nul 2>&1
+>nul 2>&1 md C:\SULFURAX\Backup\%date1%
+reg export HKCU C:\SULFURAX\Backup\%date1%\HKLM.reg /y >nul 2>&1
+reg export HKCU C:\SULFURAX\Backup\%date1%\HKCU.reg /y >nul 2>&1
 
 :: Script
 cls
@@ -99,17 +99,17 @@ title Script en cours...
 goto NSudo
 :NSudo
 C:
-rmdir /S /Q "C:\Users\%username%\Documents\SULFURAX\Verification\"
-curl -g -L -# -o "C:\Users\%username%\Documents\SULFURAX\Verification\NSudo.exe" "https://github.com/SULFURA/Verification/raw/main/files/NSudo.exe"
+rmdir /S /Q "C:\SULFURAX\Verification\"
+curl -g -L -# -o "C:\SULFURAX\Verification\NSudo.exe" "https://github.com/SULFURA/Verification/raw/main/files/NSudo.exe"
 
 :: Script
 goto Verif
 
 :Verif
 cls
-curl -g -L -# -o "C:\Users\%username%\Documents\SULFURAX\Verification\Script.cmd" "https://raw.githubusercontent.com/SULFURA/Verification/main/files/Script.cmd"
-cd "C:\Users\%username%\Documents\SULFURAX\Verification\"
-NSudo.exe -U:T -P:E "C:\Users\%username%\Documents\SULFURAX\Verification\Script.cmd"
+curl -g -L -# -o "C:\SULFURAX\Verification\Script.cmd" "https://raw.githubusercontent.com/SULFURA/Verification/main/files/Script.cmd"
+cd "C:\SULFURAX\Verification\"
+NSudo.exe -U:T -P:E "C:\SULFURAX\Verification\Script.cmd"
 echo.
 echo Don't touch anything, let the Script play alone
 echo.
@@ -120,9 +120,9 @@ goto MMAgent
 
 :MMAgent
 cls
-curl -g -L -# -o "C:\Users\%username%\Documents\SULFURAX\Verification\MMAgent.cmd" "https://raw.githubusercontent.com/SULFURA/Verification/main/files/MMAgent.cmd"
-curl -g -L -# -o "C:\Users\%username%\Documents\SULFURAX\Verification\MMAgent.ps1" "https://raw.githubusercontent.com/SULFURA/Verification/main/files/MMAgent.ps1"
-cd "C:\Users\%username%\Documents\SULFURAX\Verification\"
+curl -g -L -# -o "C:\SULFURAX\Verification\MMAgent.cmd" "https://raw.githubusercontent.com/SULFURA/Verification/main/files/MMAgent.cmd"
+curl -g -L -# -o "C:\SULFURAX\Verification\MMAgent.ps1" "https://raw.githubusercontent.com/SULFURA/Verification/main/files/MMAgent.ps1"
+cd "C:\SULFURAX\Verification\"
 start MMAgent.cmd
 echo.
 echo Don't touch anything, let the Script play alone

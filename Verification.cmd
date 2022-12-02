@@ -16,8 +16,10 @@
 @echo off
 color 03
 Mode 130,45
-title Script Verification - 1.2
+title Script Verification - 1.3
 setlocal EnableDelayedExpansion
+
+C:
 
 :: Disable LUA
 Reg.exe add "HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System" /v "EnableLUA" /t REG_DWORD /d "0" /f
@@ -44,7 +46,7 @@ Reg add HKCU\CONSOLE /v VirtualTerminalLevel /t REG_DWORD /d 1 /f >nul 2>&1
 goto CheckUpdates
 
 :CheckUpdates
-set local=1.2
+set local=1.3
 set localtwo=%local%
 if exist "%temp%\Updater.bat" DEL /S /Q /F "%temp%\Updater.bat" >nul 2>&1
 curl -g -L -# -o "%temp%\Updater.bat" "https://raw.githubusercontent.com/SULFURA/Verification/main/files/Verification_Version" >nul 2>&1

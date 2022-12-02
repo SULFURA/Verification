@@ -1,6 +1,7 @@
 @echo off
 color 03
 Mode 130,45
+C:
 
 :: Reset rules firewall (for people who bypass with)
 netsh advfirewall reset 

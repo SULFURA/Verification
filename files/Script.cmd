@@ -1,4 +1,5 @@
 @echo off
+setlocal enabledelayedexpansion
 color 03
 Mode 130,45
 C:
@@ -20,55 +21,89 @@ sc config AppInfo start=auto
 sc start AppInfo
 
 :: Start BAM Service
-sc config BAM start= AUTO
-sc start BAM start
+sc config BAM start= auto
+sc start BAM 
+
+:: Start bfe service
+sc config bfe start= auto
+sc start bfe 
 
 :: Start BITS Service
 sc config BITS start=auto
 sc start BITS
 
-:: Start CDPUserSvc_1675c6 Service
-sc config CDPUserSvc_1675c6 start=auto
-sc start CDPUserSvc_1675c6
+:: Start CDPUserSvc_[numbers] Service
+for /f "tokens=2 delims=:" %%a in ('sc query state^= all ^| findstr /i "cdpuser"') do (
+    set serviceName=%%a
+)
+
+sc config %serviceName% start= auto
+reg add "HKLM\SYSTEM\CurrentControlSet\Services\%serviceName%" /v Start /t REG_DWORD /d 2 /f
+sc start %serviceName%
 
 :: Start CDPSvc Service
 sc config CDPSvc start=auto
 sc start CDPSvc
 
 :: Start DiagTrack Service
-sc config DiagTrack start= AUTO
-sc start DiagTrack start
+sc config DiagTrack start= auto
+sc start DiagTrack 
 
 :: Start DNS Service
-sc config dnscache start= AUTO
-sc start dnscache start
+sc config dnscache start= auto
+sc start dnscache 
 
 :: Start DPS Service
-sc config DPS start= AUTO
-sc start DPS start
+sc config DPS start= auto
+sc start DPS 
 
 :: Start Dusmsvc Service
-sc config Dusmsvc start= AUTO
-sc start Dusmsvc start
+sc config Dusmsvc start= auto
+sc start Dusmsvc 
 
 :: Start Eventlog Service
-sc config Eventlog start= AUTO
-sc start Eventlog start
+sc config Eventlog start= auto
+sc start Eventlog 
+
+:: Start KeyIso Service
+sc config KeyIso start= auto
+sc start KeyIso 
+
+:: Start mpssvc Service
+sc config mpssvc start= auto
+sc start mpssvc
 
 :: Start PCA Service
-sc config PcaSvc start= AUTO
-sc start PcaSvc start
+sc config PcaSvc start= auto
+sc start PcaSvc 
 
 :: Start SGRMBroker Service
-sc config SGRMBroker start= AUTO
+sc config SGRMBroker start= auto
 sc start SGRMBroker
 
+:: Start Smartscreen
+reg add "HKCU\Software\Microsoft\Windows\CurrentVersion\Explorer" /v SmartScreenEnabled /t REG_DWORD /d 1 /f
+reg add "HKCU\Software\Microsoft\Windows\CurrentVersion\ContentDeliveryManager" /v PreferOnlineApps /t REG_DWORD /d 1 /f
+
 :: Start SysMain/Superfetch Service
-sc config SysMain start= AUTO
-sc start SysMain start
+sc config SysMain start= auto
+sc start SysMain 
+
+:: Start umrdpservice Service
+sc config umrdpservice start= auto
+sc start umrdpservice 
+
+:: Start Windows Defender
+reg add "HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows Defender" /v DisableAntiSpyware /t REG_DWORD /d 0 /f
+reg add "HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows Defender" /v DisableAntiSpyware /t REG_DWORD /d 0 /f
+reg add "HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows Defender\Real-Time Protection" /v DisableBehaviorMonitoring /t REG_DWORD /d 0 /f
+reg add "HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows Defender\Real-Time Protection" /v DisableOnAccessProtection /t REG_DWORD /d 0 /f
+sc config Windefend start= auto
+reg add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\Windefend" /v Start /t REG_DWORD /d 2 /f
+sc start Windefend
 
 :: Start WSearch Service
-sc config WSearch start= AUTO
+sc config WSearch start= auto
 sc start WSearch
 
 :: Clear CMD
